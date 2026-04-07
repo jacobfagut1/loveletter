@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 23rd Birthday, Jianne 💕</title>
+  <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap)" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background: linear-gradient(135deg, #f5e6d3 0%, #e8d4c4 25%, #d4b896 50%, #c9a882 75%, #b8956e 100%);
+      min-height: 100vh;
+      color: #4a3728;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* Floating hearts background */
+    .hearts-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      opacity: 0.15;
+      animation: floatHeart 15s infinite ease-in-out;
+    }
+
+    @keyframes floatHeart {
+      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.15; }
+      90% { opacity: 0.15; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+
+    /* Start screen */
+    .start-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #5c4033 0%, #8b6914 50%, #a0522d 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      cursor: pointer;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .start-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .start-screen h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #f5e6d3;
+      text-align: center;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .start-screen p {
+      color: #e8d4c4;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+    }
+
+    .start-icon {
+      font-size: 4rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    /* Main content */
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 25px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 40px 0 50px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease 0.3s forwards;
+    }
+
+    .header .date {
+      font-size: 0.9rem;
+      color: #7a6252;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: #5c4033;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .header .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #8b6914;
+    }
+
+    .header .heart-divider {
+      margin-top: 30px;
+      font-size: 1.5rem;
+      color: #a0522d;
+      letter-spacing: 10px;
+    }
+
+    /* Letter */
+    .letter {
+      background: linear-gradient(180deg, #fdfbf7 0%, #f9f3eb 100%);
+      border-radius: 8px;
+      padding: 50px 40px;
+      box-shadow: 
+        0 10px 40px rgba(92, 64, 51, 0.15),
+        0 0 0 1px rgba(139, 105, 20, 0.1),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease 0.6s forwards;
+    }
+
+    .letter::before {
+      content: '✉';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      background: #e8d4c4;
+      padding: 5px 15px;
+      border-radius: 50%;
+    }
+
+    .letter p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+      font-size: 1.05rem;
+      color: #4a3728;
+    }
+
+    .letter p:first-of-type::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      float: left;
+      line-height: 1;
+      margin-right: 10px;
+      margin-top: 5px;
+      color: #8b6914;
+    }
+
+    .letter .ps {
+      font-style: italic;
+      color: #7a6252;
+      border-left: 3px solid #c9a882;
+      padding-left: 15px;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .letter .signature {
+      text-align: right;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: #5c4033;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #d4b896;
+    }
+
+    /* Music player */
+    .music-note {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: rgba(92, 64, 51, 0.9);
+      color: #f5e6d3;
+      padding: 12px 18px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .music-note:hover {
+      transform: scale(1.05);
+    }
+
+    .music-note .icon {
+      font-size: 1.2rem;
+      animation: musicPulse 1s infinite;
+    }
+
+    .music-note.paused .icon {
+      animation: none;
+    }
+
+    @keyframes musicPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .header h1 { font-size: 2.2rem; }
+      .header .subtitle { font-size: 1.2rem; }
+      .letter { padding: 40px 25px; }
+      .letter p { font-size: 1rem; }
+      .start-screen h1 { font-size: 2rem; padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Start Screen (tap to begin - required for iOS audio) -->
+  <div class="start-screen" id="startScreen">
+    <div class="start-icon">💌</div>
+    <h1>A Letter For You, Jianne</h1>
+    <p>Tap anywhere to open</p>
+  </div>
+
+  <!-- Floating Hearts Background -->
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <header class="header">
+      <p class="date">April 8, 2025</p>
+      <h1>Happy 23rd Birthday</h1>
+      <p class="subtitle">Jianne, my loveyyy 💕</p>
+      <div class="heart-divider">♥ ♥ ♥</div>
+    </header>
+
+    <article class="letter">
+      <p>Hi loveyyy, it's been 4 years of us and I am so happy that we still have US and that we keep getting stronger. I want to thank you for everything you've done for me and for always being there by my side.</p>
+
+      <p>I want to say sorry for everything that I did and failed to do as a boyfriend, but I promise you that I will do everything to improve and make you feel that I'm really trying. I'm sorry for being pikunin, makulit, and sometimes insensitive.</p>
+
+      <p>I also want to thank you for changing the way I was before. Without you, I wouldn't have been able to communicate and be close to my family. Because of you, I eat with my parents and play with my siblings, and I'm very thankful for that.</p>
+
+      <p>Thank you for always updating me, and I'm sorry if I don't update you all the time, but I'm doing my best to change that. I'm also sorry that I keep getting sleepy when I'm with you. It's because every time I'm with you, that's the only time I feel safe. You calm my mind, stop me from overthinking, and it makes me feel relaxed and sleepy.</p>
+
+      <p>I'm also sorry because I stopped sending letters like I did before, but I'll make sure to give you the best letter I can make right now.</p>
+
+      <p>I also just want to tell you that you are beautiful and sexy the way you are. You don't have to listen to what other people say because what matters is what we say to each other, and I already love the way you are.</p>
+
+      <p>I'm also sorry that I made you feel bad about the cost during your birthday. That's not what I really meant; I just said it in the wrong way. I want you to feel excited every birthday you have, and I never want you to feel like you don't need or have to celebrate it. It hurts me so much knowing that you feel that way.</p>
+
+      <p>I'm also really proud of you, loveyyy. I see how hard you try in everything you do and how strong you are even when things are difficult. You inspire me to become a better person every day, and I'm grateful that I get to see you grow and achieve the things you work hard for.</p>
+
+      <p>Loveyyy, you changed my life in so many ways that you might not even realize. Before you, I didn't know how to express my feelings properly, and I kept many things to myself. But because of you, I slowly learned how to open up, communicate better, and become a better person. You helped me grow into someone I'm proud to be today.</p>
+
+      <p>I also appreciate the small things you do for me that you might think are simple but mean a lot to me. The way you check on me, remind me to eat, ask about my day, and care about my feelings. Those little things make me feel loved and remind me how lucky I am to have you.</p>
+
+      <p>I promise that I will keep trying to be a better boyfriend for you. I know I'm not perfect, and I still make mistakes, but I will always keep learning and improving for us. I want to become someone you can always rely on, someone who will always support you and stay beside you no matter what happens.</p>
+
+      <p>I know we still have a lot to go through together, and I'm excited for all the things we will experience in the future. No matter what challenges come our way, I want you to know that I will always choose you. I want to keep growing with you, supporting you, and building more memories with you in the years to come.</p>
+
+      <p>Thank you for loving me, for being patient with me, and for staying with me through everything.</p>
+
+      <p>Happy 23rd birthday, loveyyy. I love you so much, and I'm thankful every day that I get to call you mine.</p>
+
+      <p>No matter how many years pass, I will always be grateful that our paths crossed and that we chose each other. I hope we continue to grow, laugh, and build a beautiful life together. I love you always, loveyyy.</p>
+
+      <p class="ps">I hope you always remember how loved you are, not just today on your birthday, but every single day, loveyyy.</p>
+
+      <p class="ps">Four years with you still doesn't feel like enough. I can't wait to spend many more birthdays and anniversaries with you, loveyyy.</p>
+
+      <p class="signature">With all my love,<br>Forever yours 💕</p>
+    </article>
+  </div>
+
+  <!-- Music indicator -->
+  <div class="music-note" id="musicNote">
+    <span class="icon">🎵</span>
+    <span class="song-title">Can't Help Falling in Love</span>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Generate floating hearts
+    const heartsBg = document.getElementById('heartsBg');
+    const hearts = ['♥', '♡', '❤', '💕'];
+    
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('span');
+      heart.className = 'heart';
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDelay = Math.random() * 15 + 's';
+      heart.style.animationDuration = (15 + Math.random() * 10) + 's';
+      heartsBg.appendChild(heart);
+    }
+
+    // Start screen and music
+    const startScreen = document.getElementById('startScreen');
+    const bgMusic = document.getElementById('bgMusic');
+    const musicNote = document.getElementById('musicNote');
+    let isPlaying = false;
+
+    startScreen.addEventListener('click', function() {
+      startScreen.classList.add('hidden');
+      bgMusic.play().then(() => {
+        isPlaying = true;
+      }).catch(e => console.log('Audio play failed:', e));
+    });
+
+    // Toggle music on/off
+    musicNote.addEventListener('click', function() {
+      if (isPlaying) {
+        bgMusic.pause();
+        musicNote.classList.add('paused');
+        musicNote.querySelector('.icon').textContent = '🔇';
+      } else {
+        bgMusic.play();
+        musicNote.classList.remove('paused');
+        musicNote.querySelector('.icon').textContent = '🎵';
+      }
+      isPlaying = !isPlaying;
+    });
+  </script>
+</body>
+</html>
